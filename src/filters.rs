@@ -3,7 +3,7 @@ use warp::{Filter, Rejection, Reply};
 use crate::{get_user_handler, list_users_handler, put_user_handler, Database};
 
 pub fn users_api(db: Database) -> impl Filter<Extract = impl Reply, Error = Rejection> + Clone {
-    list(db.clone()).or(get_user(db.clone())).or(put_user(db))
+    get_user(db.clone()).or(list(db.clone())).or(put_user(db))
 }
 
 fn users() -> warp::filters::BoxedFilter<()> {
